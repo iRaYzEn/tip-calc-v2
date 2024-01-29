@@ -22,7 +22,7 @@ discountNumber.forEach((btn) => {
 reset.addEventListener("click", () => {
     waitersNumber.value = 1;
     bill.value = 0;
-    custom.value = 0;
+    custom.value = "";
     output1.textContent = "$0.00";
     output2.textContent = "$0.00";
 });
