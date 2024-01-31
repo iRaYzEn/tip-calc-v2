@@ -5,6 +5,7 @@ const custom = document.querySelector(".custom");
 const discountNumber = document.querySelectorAll(".btn");
 const output1 = document.querySelector(".output1");
 const output2 = document.querySelector(".output2");
+const errorElement = document.querySelector("#error");
 
 function result(num, per, waiterNumber = 1) {
     return (((num / 100) * per) / waiterNumber).toFixed(2);
@@ -19,6 +20,7 @@ discountNumber.forEach((btn) => {
     });
 });
 
+
 reset.addEventListener("click", () => {
     waitersNumber.value = 1;
     bill.value = 0;
@@ -31,8 +33,19 @@ custom.addEventListener("input", () => {
     outputTip();
 });
 
+let messages = [];
 waitersNumber.addEventListener("input", () => {
     outputTip();
+    if (waitersNumber.value <= 0) {
+        messages.push("this filed can't be zero")
+        errorElement.textContent = messages[0];
+        errorElement.style.display = "block";
+        waitersNumber.style.borderColor = "rgb(244 63 94)";
+        waitersNumber.style.borderWidth = "2px";
+    } else {
+        errorElement.style.display = "none";
+        waitersNumber.style.borderWidth = "0px";
+    }
 });
 bill.addEventListener("input", () => {
     outputTip();
